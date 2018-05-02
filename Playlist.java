@@ -16,24 +16,21 @@ public class Playlist {
     songList.add(new Song("Another Day", "Alison Moyet", "The Turn", 2007));
     songList.add(new Song("Face-off", "Spooky Tooth", "The Island Years", 2015));
     
-    getUserInput(songList);
-	        
+    getUserInput(songList);        
   }
   
-  static boolean getUserInput(ArrayList<Song> songList) {
+  static void getUserInput(ArrayList<Song> songList) {
 	Scanner in = new Scanner(System.in);  
-	  System.out.println("Enter a year");
+	  System.out.println("Enter a year (YYYY)");
 	  try {
 	    int year = in.nextInt();
 	    getSongsByYear(year, songList);
 	   } catch (InputMismatchException e){
 	      System.out.println(e + " Please run the program again and enter a year");
 	   }
-	  return true;
   }
 
-  static void getSongsByYear(int year, ArrayList<Song> songList) {
-    year = year;
+  static ArrayList<Song> getSongsByYear(int year, ArrayList<Song> songList) {
     for (int index = 0; index < songList.size(); index++) { 	
   	if (year == songList.get(index).year) {
   	  String song = songList.get(index).title + ' ' 
@@ -42,6 +39,7 @@ public class Playlist {
   				+ songList.get(index).year;
       System.out.println(song); 	    
       }
-    }  
+    } 
+    return songList;
   }
 }
